@@ -9,9 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Consumidor", "COnsumidor\Co
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Console", "Console", "{8BA5F283-2FAC-4CE1-A283-B7B4AE3CCCF0}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docker", "Docker", "{B06822BB-A55F-419E-B336-B9CAFC023C95}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Avros", "Avros", "{4351F804-F9B7-429B-B0BB-56727DC373BA}"
 	ProjectSection(SolutionItems) = preProject
-		..\..\..\Users\andre\Documents\Docker\confluent plataform\docker-compose.yml = ..\..\..\Users\andre\Documents\Docker\confluent plataform\docker-compose.yml
+		Curso.avsc = Curso.avsc
 	EndProjectSection
 EndProject
 Global
@@ -35,6 +35,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{F6EB4DCA-33B1-4588-8E26-925E1BE6DEC1} = {8BA5F283-2FAC-4CE1-A283-B7B4AE3CCCF0}
 		{FE433442-3AE5-4B95-9B80-AD49BFEF00B8} = {8BA5F283-2FAC-4CE1-A283-B7B4AE3CCCF0}
+		{4351F804-F9B7-429B-B0BB-56727DC373BA} = {8BA5F283-2FAC-4CE1-A283-B7B4AE3CCCF0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9795D467-8009-42BC-8111-E1FCF7CCB7AD}
