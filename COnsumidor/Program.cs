@@ -1,4 +1,16 @@
 ﻿using Confluent.Kafka;
+using Confluent.Kafka.SyncOverAsync;
+using Confluent.SchemaRegistry;
+using Confluent.SchemaRegistry.Serdes;
+using desenvolvedor.io;
+using Newtonsoft.Json;
+
+var schemaConfig = new SchemaRegistryConfig
+{
+    Url = "http://localhost:8081"
+};
+
+var schemaRegistry = new CachedSchemaRegistryClient(schemaConfig);
 
 var config = new ConsumerConfig()
 {
@@ -6,11 +18,14 @@ var config = new ConsumerConfig()
     BootstrapServers = "localhost:9092"
 };
 
-using var consumer = new ConsumerBuilder<string, string>(config).Build();
-consumer.Subscribe("topico-teste");
+using var consumer = new ConsumerBuilder<string, Curso>(config)
+    .SetValueDeserializer(new AvroDeserializer<Curso>(schemaRegistry).AsSyncOverAsync())
+    .Build();
+
+consumer.Subscribe("cursos");
 
 while (true)
 {
     var result = consumer.Consume();
-    Console.WriteLine($"{result.Message.Key}{result.Message.Value}");
+    Console.WriteLine($"{result.Message.Key} - {JsonConvert.SerializeObject(result.Message.Value)}");
 }

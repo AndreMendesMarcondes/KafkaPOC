@@ -4,11 +4,11 @@
     "name": "Curso",
     "fields": [
         {
-            "name": "id",
+            "name": "Id",
             "type": "string"
         },
         {
-            "name": "descricao",
+            "name": "Descricao",
             "type": "string"
         }
     ]
