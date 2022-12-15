@@ -12,4 +12,8 @@
 		<PackageReference Include="Confluent.SchemaRegistry.Serdes.Avro" Version="1.9.3" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <ProjectReference Include="..\Serializer\Serializer.csproj" />
+	</ItemGroup>
+
 </Project>
