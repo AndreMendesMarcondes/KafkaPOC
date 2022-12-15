@@ -47,6 +47,7 @@ static async Task ConsumeCustomDeserializer<T>()
 
     var config = new ConsumerConfig()
     {
+        Acks = Acks.None, //verificando o ack
         GroupId = "devio",
         BootstrapServers = "localhost:9092"
     };
