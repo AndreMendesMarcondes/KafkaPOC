@@ -4,6 +4,7 @@ using Confluent.SchemaRegistry.Serdes;
 using desenvolvedor.io;
 using Serializer;
 using System.IO.Pipes;
+using System.Text;
 
 var schemaConfig = new SchemaRegistryConfig
 {
@@ -42,10 +43,15 @@ static async Task<DeliveryResult<string, T>> ProduceSerializeMessage<T>(T messag
     producer.InitTransactions(timeout: TimeSpan.FromSeconds(5));
     producer.BeginTransaction();
 
+    var headers = new Headers();
+    headers.Add("application", Encoding.UTF8.GetBytes("payment"));
+    headers.Add("transactionId", Encoding.UTF8.GetBytes(Guid.NewGuid().ToString()));
+
     var result = await producer.ProduceAsync("cursos", new Message<string, T>
     {
         Key = Guid.NewGuid().ToString(),
-        Value = message
+        Value = message,
+        Headers = headers
     });
 
     return result;

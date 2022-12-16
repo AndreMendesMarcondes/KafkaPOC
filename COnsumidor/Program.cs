@@ -5,6 +5,7 @@ using Confluent.SchemaRegistry.Serdes;
 using desenvolvedor.io;
 using Newtonsoft.Json;
 using Serializer;
+using System.Text;
 
 await ConsumeCustomDeserializer<Curso>();
 
@@ -65,6 +66,15 @@ static async Task ConsumeCustomDeserializer<T>()
     while (true)
     {
         var result = consumer.Consume();
+        var message = result.Message.Value;
+
+             var headers = result.Message.Headers.ToDictionary(p => p.Key, p => Encoding.UTF8.GetString(p.GetValueBytes()));
+
+        var application = headers["application"];
+        var transactionId = headers["transactionId"];
+
+        Console.WriteLine("application: " + application + " - transactionId: " + transactionId);
+
         Console.WriteLine($"{result.Message.Key} - {JsonConvert.SerializeObject(result.Message.Value)}");
     }
 }
