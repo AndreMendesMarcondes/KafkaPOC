@@ -23,6 +23,8 @@ static async Task ConsumeCustomDeserializeAvro()
         BootstrapServers = "localhost:9092",
         EnableAutoCommit= false,
         EnableAutoOffsetStore= false,
+
+        IsolationLevel = IsolationLevel.ReadCommitted,
     };
 
     using var consumer = new ConsumerBuilder<string, Curso>(config)
