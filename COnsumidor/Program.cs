@@ -20,7 +20,9 @@ static async Task ConsumeCustomDeserializeAvro()
     var config = new ConsumerConfig()
     {
         GroupId = "devio",
-        BootstrapServers = "localhost:9092"
+        BootstrapServers = "localhost:9092",
+        EnableAutoCommit= false,
+        EnableAutoOffsetStore= false,
     };
 
     using var consumer = new ConsumerBuilder<string, Curso>(config)
